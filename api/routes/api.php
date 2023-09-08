@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('vendedor')->group(function () {
+    Route::get('/', function () {
+        return response()->json(["msg" => "ok"], 200);
+    });
+});
