@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Domain\Vendedor\VendedorRepositoryInterface;
-use App\Infra\VendedorQueryBuilderRepository;
 use App\UseCases\VendedorService;
 use Illuminate\Support\ServiceProvider;
 use App\Domain\Vendedor\VendedorServiceInterface;
+use App\Domain\Vendedor\VendedorRepositoryInterface;
+use App\Infra\Repositories\VendedorQueryBuilderRepository;
 
 class AppServiceProvider extends ServiceProvider
 {

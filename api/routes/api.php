@@ -1,5 +1,7 @@
 <?php
 
+use App\Domain\Vendedor\Vendedor;
+use App\Http\Controllers\VendedorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('vendedor')->group(function () {
-    Route::get('/', function () {
-        return response()->json(["msg" => "ok"], 200);
-    });
+    Route::post('/', [VendedorController::class, 'criarNovoVendedor']);
 });
