@@ -4,7 +4,6 @@ namespace App\Domain\Venda;
 
 class DtoNovaVenda
 {
-    public float $comissao;
+    public int $vendedorId;
     public float $valor;
-    public string $data;
 }
