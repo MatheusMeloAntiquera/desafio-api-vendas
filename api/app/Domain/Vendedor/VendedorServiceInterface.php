@@ -7,6 +7,10 @@ use App\Domain\Vendedor\DtoCriarVendedor;
 
 interface VendedorServiceInterface
 {
-    public function __construct(VendedorRepositoryInterface $vendedorRepository);
     public function criarVendedor(DtoCriarVendedor $dtoCriarVendedor): Vendedor;
+
+    /**
+     * @return Vendedor[]|null
+     */
+    public function retornarTodosVendedores();
 }

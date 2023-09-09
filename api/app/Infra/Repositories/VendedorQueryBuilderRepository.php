@@ -33,6 +33,23 @@ class VendedorQueryBuilderRepository implements VendedorRepositoryInterface
         return $this->criarNovaInstanciaVendedor($resultado);
     }
 
+    public function retornarTodosVendedores()
+    {
+        $resultado = DB::table($this->tabela)->get();
+
+        if (empty($resultado)) {
+            return null;
+        }
+
+        $retorno = [];
+        foreach ($resultado as $dados) {
+            $vendedor = $this->criarNovaInstanciaVendedor($dados);
+            $retorno[] = $vendedor;
+        }
+
+        return $retorno;
+    }
+
     private function criarNovaInstanciaVendedor(stdClass $resultado): Vendedor
     {
         $vendedor = new Vendedor();

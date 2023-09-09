@@ -35,7 +35,7 @@ class VendaTest extends TestCase
 
         $vendedor->id = $this->vendedorRepository->gravarNovoVendedor($vendedor);
 
-        $response = $this->post('/api/venda', [
+        $response = $this->postJson('/api/venda', [
             "vendedor_id" => $vendedor->id,
             "valor" => 250.00
         ]);

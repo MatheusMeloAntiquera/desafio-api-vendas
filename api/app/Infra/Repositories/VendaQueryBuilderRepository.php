@@ -28,7 +28,7 @@ class VendaQueryBuilderRepository implements VendaRepositoryInterface
         $resultado = DB::table($this->tabela)
             ->select($this->tabela . ".*", 'vendedores.id as vendedor_id', 'vendedores.nome', 'vendedores.email')
             ->join('vendedores', 'vendedores.id', '=', $this->tabela . '.vendedor_id')
-            ->where($this->tabela .".id", $id)
+            ->where($this->tabela . ".id", $id)
             ->first();
 
         if (empty($resultado)) {
@@ -36,6 +36,29 @@ class VendaQueryBuilderRepository implements VendaRepositoryInterface
         }
 
         return $this->criarNovaInstanciaVenda($resultado);
+    }
+
+    public function buscarVendasPorVendedor($vendedorId)
+    {
+        $resultado = DB::table($this->tabela)
+            ->where('vendedor_id', $vendedorId)
+            ->get();
+
+        if (empty($resultado)) {
+            return null;
+        }
+
+        $retorno = [];
+        foreach ($resultado as $dados) {
+            $venda = new Venda();
+            $venda->id = $dados->id;
+            $venda->valor = $dados->valor;
+            $venda->comissao = $dados->comissao;
+            $venda->data = $dados->created_at;
+            $retorno[] = $venda;
+        }
+
+        return $retorno;
     }
 
     private function criarNovaInstanciaVenda(stdClass $resultado): Venda
