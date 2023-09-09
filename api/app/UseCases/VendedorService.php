@@ -54,4 +54,14 @@ class VendedorService implements VendedorServiceInterface
 
         return array_reduce($vendedor->vendas, fn($total, $venda): float => $total += $venda->comissao, 0);
     }
+
+    public function retornaTodasAsVendas(Vendedor $vendedor)
+    {
+        return $this->vendaRepository->buscarVendasPorVendedor($vendedor->id);
+    }
+
+    public function buscarVendedorPorId(int $id): Vendedor|null
+    {
+        return $this->vendedorRepository->buscarVendedorPorId($id);
+    }
 }
