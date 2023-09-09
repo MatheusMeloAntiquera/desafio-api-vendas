@@ -13,4 +13,6 @@ interface VendedorServiceInterface
      * @return Vendedor[]|null
      */
     public function retornarTodosVendedores();
+
+    public function calculaComissaoVendedor(Vendedor $vendedor): float;
 }

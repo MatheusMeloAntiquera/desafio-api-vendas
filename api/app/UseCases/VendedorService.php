@@ -38,12 +38,20 @@ class VendedorService implements VendedorServiceInterface
             return [];
         }
 
-        $retorno = [];
         foreach ($vendedores as $vendedor) {
             $vendedor->vendas = $this->vendaRepository->buscarVendasPorVendedor($vendedor->id);
-            $retorno[] = new DtoResponseVendedor($vendedor);
+            $retorno[] = $vendedor;
         }
 
         return $retorno;
+    }
+
+    public function calculaComissaoVendedor(Vendedor $vendedor): float
+    {
+        if (empty($vendedor->vendas)) {
+            return 0.0;
+        }
+
+        return array_reduce($vendedor->vendas, fn($total, $venda): float => $total += $venda->comissao, 0);
     }
 }
