@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('vendedor')->group(function () {
     Route::post('/', [VendedorController::class, 'criarNovoVendedor']);
     Route::get('/', [VendedorController::class, 'listarTodosVendedores']);
+    Route::get('/{id}/vendas', [VendedorController::class, 'listarTodasVendas']);
 });
 
 Route::prefix('venda')->group(function () {
