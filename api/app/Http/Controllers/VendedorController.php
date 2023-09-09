@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Vendedor\DtoCriarVendedor;
+use App\Domain\Vendedor\DtoResponseVendedor;
 use App\Domain\Vendedor\VendedorServiceInterface;
 use Illuminate\Http\Request;
 
@@ -22,5 +23,19 @@ class VendedorController extends Controller
         $vendedor = $this->vendedorService->criarVendedor($dtoCriarVendedor);
 
         return response()->json((array) $vendedor, 201);
+    }
+
+    public function listarTodosVendedores()
+    {
+        $vendedores = $this->vendedorService->retornarTodosVendedores();
+
+        $retorno = [];
+        foreach ($vendedores as $vendedor) {
+            $retorno[] = new DtoResponseVendedor(
+                $vendedor,
+                $this->vendedorService->calculaComissaoVendedor($vendedor)
+            );
+        }
+        return response()->json($retorno, 200);
     }
 }
