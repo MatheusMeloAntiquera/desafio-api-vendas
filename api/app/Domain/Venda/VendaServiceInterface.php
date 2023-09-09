@@ -7,5 +7,5 @@ use App\Domain\Venda\DtoNovaVenda;
 
 interface VendaServiceInterface
 {
-    public function lancarNovaVenda(DtoNovaVenda $venda): Venda;
+    public function lancarNovaVenda(DtoNovaVenda $dtoNovaVenda): Venda;
 }

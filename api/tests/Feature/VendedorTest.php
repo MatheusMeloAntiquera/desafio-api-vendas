@@ -22,7 +22,7 @@ class VendedorTest extends TestCase
      * @test
      * @return void
      */
-    public function devera_criar_um_vendedor_com_sucesso_via_api(): void
+    public function deveraCriarUmVendedorComSucessoViaApi(): void
     {
         $response = $this->post('/api/vendedor', [
             "nome" => "João",
