@@ -14,9 +14,4 @@ class Vendedor
      * @var Venda[]|null
      */
     public $vendas;
-
-    public function comissao(): float
-    {
-        return array_reduce($this->vendas, fn($total, $venda): float => $total += $venda->comissao, 0);
-    }
 }

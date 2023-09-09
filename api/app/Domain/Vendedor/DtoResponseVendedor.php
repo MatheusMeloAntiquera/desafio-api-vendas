@@ -9,11 +9,11 @@ class DtoResponseVendedor
     public string $email;
     public float $comissao;
 
-    public function __construct(Vendedor $vendedor)
+    public function __construct(Vendedor $vendedor, float $comissao)
     {
         $this->id = $vendedor->id;
         $this->nome = $vendedor->nome;
         $this->email = $vendedor->email;
-        $this->comissao = $vendedor->comissao();
+        $this->comissao = $comissao;
     }
 }
