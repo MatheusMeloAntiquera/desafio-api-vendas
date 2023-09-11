@@ -67,7 +67,7 @@ class VendaQueryBuilderRepository implements VendaRepositoryInterface
         $resultado = DB::table($this->tabela)
             ->select($this->tabela . ".*", 'vendedores.id as vendedor_id', 'vendedores.nome', 'vendedores.email')
             ->join('vendedores', 'vendedores.id', '=', $this->tabela . '.vendedor_id')
-            ->where($this->tabela . '.created_at', '>', $dataInicio)->where($this->tabela . '.created_at', '<', $dataFinal)
+            ->where($this->tabela . '.created_at', '>', $dataInicio->format('Y-m-d H:i:s'))->where($this->tabela . '.created_at', '<', $dataFinal->format('Y-m-d H:i:s'))
             ->get();
         $retorno = [];
         foreach ($resultado as $dados) {
