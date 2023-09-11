@@ -22,7 +22,7 @@ class VendedorController extends Controller
         $dtoCriarVendedor->email = $requisicao->email;
 
         $vendedor = $this->vendedorService->criarVendedor($dtoCriarVendedor);
-
+        unset($vendedor->vendas);
         return response()->json((array) $vendedor, 201);
     }
 
