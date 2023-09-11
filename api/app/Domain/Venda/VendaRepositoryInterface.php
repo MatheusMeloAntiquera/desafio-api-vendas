@@ -2,6 +2,7 @@
 
 namespace App\Domain\Venda;
 
+use DateTime;
 use App\Domain\Venda\Venda;
 
 interface VendaRepositoryInterface
@@ -16,4 +17,9 @@ interface VendaRepositoryInterface
      * @return Venda[]|null
      */
     public function buscarVendasPorVendedor(int $vendedorId);
+
+    /**
+     * @return Venda[]|null
+     */
+    public function buscarVendasNoIntervalo(DateTime $dataInicial, DateTime $datafinal);
 }

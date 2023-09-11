@@ -2,6 +2,7 @@
 
 namespace App\Infra\Repositories;
 
+use DateTime;
 use stdClass;
 use App\Domain\Venda\Venda;
 use App\Domain\Vendedor\Vendedor;
@@ -56,6 +57,21 @@ class VendaQueryBuilderRepository implements VendaRepositoryInterface
             $venda->comissao = $dados->comissao;
             $venda->data = $dados->created_at;
             $retorno[] = $venda;
+        }
+
+        return $retorno;
+    }
+
+    public function buscarVendasNoIntervalo(DateTime $dataInicio, DateTime $dataFinal)
+    {
+        $resultado = DB::table($this->tabela)
+            ->select($this->tabela . ".*", 'vendedores.id as vendedor_id', 'vendedores.nome', 'vendedores.email')
+            ->join('vendedores', 'vendedores.id', '=', $this->tabela . '.vendedor_id')
+            ->where($this->tabela . '.created_at', '>', $dataInicio)->where($this->tabela . '.created_at', '<', $dataFinal)
+            ->get();
+        $retorno = [];
+        foreach ($resultado as $dados) {
+            $retorno[] = $this->criarNovaInstanciaVenda($dados);
         }
 
         return $retorno;
