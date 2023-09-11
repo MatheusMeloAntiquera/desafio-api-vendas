@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('vendedores', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nome', 150);
             $table->string('email', 150);
+            $table->timestamps();
         });
     }
 
